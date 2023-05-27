@@ -19,12 +19,12 @@ import lombok.Data;
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Integer product_id;
     String name;
     String image;
     Double price;
 
-    @Column(name = "Createdate")
+    @Column(name = "create_date")
     java.util.Date createDate = new java.util.Date();
     
     Boolean available;

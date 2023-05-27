@@ -32,9 +32,9 @@
       </thead>
       <tbody>
         <tr th:each="cat : ${categories}">
-            <td th:text="${cat.Id}"></td>
+            <td th:text="${cat.category_id}"></td>
             <td th:text="${cat.name}"></td>
-            <td><a th:href="@{/category/edit/__${cat.id}__}">Edit</a></td>
+            <td><a th:href="@{/category/edit?id=__${cat.category_id}__}">Edit</a></td>
         </tr>
       </tbody>
     </table>

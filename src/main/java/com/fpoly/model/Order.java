@@ -23,13 +23,13 @@ import lombok.Data;
 public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Integer order_id;
     String address;
     @Temporal(TemporalType.DATE)
-    @Column(name = "CreateDate")
+    @Column(name = "create_date")
     Date createDate = new Date();
     @ManyToOne
-    @JoinColumn(name = "Username")
+    @JoinColumn(name = "username")
     Account account;
     @OneToMany(mappedBy = "order")
     List<OrderDetail> orderDetails;
