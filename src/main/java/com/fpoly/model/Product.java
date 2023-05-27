@@ -29,7 +29,7 @@ public class Product implements Serializable {
     
     Boolean available;
     @ManyToOne
-    @JoinColumn(name = "Categoryid")
+    @JoinColumn(name = "category_id")
     Category category;
     @OneToMany(mappedBy = "product")
     List<OrderDetail> orderDetails;

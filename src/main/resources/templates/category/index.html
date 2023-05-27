@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Category Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Category Management</h2>
+    <form id="categoryForm" th:action="@{/category/save}" th:object="${category}">
+      <input type="hidden" id="categoryId">
+      <div class="form-group">
+        <label for="categoryName">Category Name:</label>
+        <input type="text" th:field="*{name}"  class="form-control" id="categoryName" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+    </form>
+    <br>
+    <table class="table table-bordered" id="categoryTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="cat : ${categories}">
+            <td th:text="${cat.Id}"></td>
+            <td th:text="${cat.name}"></td>
+            <td><a th:href="@{/category/edit/__${cat.id}__}">Edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Include jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -26,7 +26,7 @@ public class Order implements Serializable {
     Integer id;
     String address;
     @Temporal(TemporalType.DATE)
-    @Column(name = "Createdate")
+    @Column(name = "CreateDate")
     Date createDate = new Date();
     @ManyToOne
     @JoinColumn(name = "Username")

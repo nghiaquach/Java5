@@ -16,7 +16,7 @@ import lombok.Data;
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer Id;
+    Integer category_id;
     String name;
     @OneToMany(mappedBy = "category")
     List<Product> products;

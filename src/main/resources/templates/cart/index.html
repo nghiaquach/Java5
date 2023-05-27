@@ -27,7 +27,7 @@
                     <td th:text="${item.name}"></td>
                     <td th:text="${item.price}"></td>
                     <td><input class="qty" th:onchange="refreshCart([[${item}]],[[${iStat}]])" type="number" th:value="${item.qty}"></td>
-                    <td class="amount" th:text="${#numbers.formatInteger(item.qty*item.price,0)}"></td>
+                    <td class="amount" th:text="${#numbers.formatDecimal(item.qty*item.price, 0, 'COMMA', 0, 'POINT')}"></td>
                     <td><a th:href="@{/cart/remove/__${item.id}__}">Remove</a></td>
                 </tr>
             </tbody>
@@ -48,7 +48,8 @@
                 contentType: "application/json",
                 success: function (response) {
                     console.log(response);
-                    $(".amount")[iStat.index].textContent = response.price * response.qty;
+                    
+                    $(".amount")[iStat.index].textContent = (response.price * response.qty).toLocaleString();
                 },
                 error: function (error) {
                     console.log(error);
