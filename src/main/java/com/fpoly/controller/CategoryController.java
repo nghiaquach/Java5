@@ -25,18 +25,22 @@ public class CategoryController {
 
     @GetMapping("/category/index")
     public String getCategories(Model model,@RequestParam("p") Optional<Integer> p) {
+        
         var category = new Category();
         model.addAttribute("category", category);
-        //Sort sort = Sort.by(Direction.ASC, "name");
+     
         var numberOfRecords = categoryDAO.count();
-        var numberOfPages = (int) Math.ceil(numberOfRecords / 3.0);
+        var numberOfPages = (int) Math.ceil(numberOfRecords / 5.0);
         model.addAttribute("numberOfPages", numberOfPages);
-        Pageable sort = PageRequest.of(p.orElse(0), 3, Sort.by("name").ascending());
+        Pageable sort = PageRequest.of(p.orElse(0), 5, Sort.by("name").ascending());
         model.addAttribute("currIndex", p.orElse(0));
         var categories = categoryDAO.findAll(sort);
-        // for (Category cat : categories) {
-        //     System.out.println(cat.getProducts().size());
-        // }
+
+        for (Category category2 : categories) {
+            var products = category2.getProducts();
+            System.out.println(category2.getName());
+            System.out.println(products.size());
+        }
 
         model.addAttribute("categories", categories);
             return "category/index";
