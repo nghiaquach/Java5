@@ -28,20 +28,14 @@ public class CategoryController {
         
         var category = new Category();
         model.addAttribute("category", category);
-     
-        var numberOfRecords = categoryDAO.count();
-        var numberOfPages = (int) Math.ceil(numberOfRecords / 5.0);
-        model.addAttribute("numberOfPages", numberOfPages);
-        Pageable sort = PageRequest.of(p.orElse(0), 5, Sort.by("name").ascending());
+    
+        Pageable pageable = PageRequest.of(p.orElse(0), 5, Sort.by("name").ascending());
+        
+        var categories = categoryDAO.findAll(pageable);
+        var numberOfPages = categories.getTotalPages();
+
         model.addAttribute("currIndex", p.orElse(0));
-        var categories = categoryDAO.findAll(sort);
-
-        for (Category category2 : categories) {
-            var products = category2.getProducts();
-            System.out.println(category2.getName());
-            System.out.println(products.size());
-        }
-
+        model.addAttribute("numberOfPages", numberOfPages);
         model.addAttribute("categories", categories);
             return "category/index";
     }
