@@ -20,8 +20,8 @@ public class ProductController {
 
     @GetMapping("/product/index")
     public String index(Model model) {
-        var products = productDAO.findByCategoryById(1);
-        model.addAttribute("products", products);
+        var products = productDAO.findAll();
+        model.addAttribute("searchResults", products);
         model.addAttribute("searchForm", new SearchForm()); 
 
         return "product/index";

@@ -15,5 +15,4 @@ public class SpringDemoApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDemoApplication.class, args);
 	}
-
 }
